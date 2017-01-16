@@ -19,7 +19,7 @@ public class WordCount {
         IOPack ioPack=new IOPack();
         String profilePath="/Users/samjjx/dev/dataset/pokec/soc-pokec-profiles.txt";
         BufferedReader br=ioPack.getBufferInstance(profilePath);
-        BufferedWriter bw=ioPack.getWritter("/Users/samjjx/dev/dataset/pokec/soc-frequent200-size2-keywords");
+        BufferedWriter bw=ioPack.getWritter("/Users/samjjx/dev/dataset/pokec/soc-frequent200-size5-keywords");
 //        String test="fdaga.fd$areq9fdagqrewq776dafafadsqeqw7daf6dad";
 //        String[] testsplit=test.split("\\P{Alpha}+");
         String line="";
@@ -43,7 +43,7 @@ public class WordCount {
                 if(index.contains(i)){
                     String[] temp=data[i].split("\\P{Alpha}+");
                     for(int j=0;j<temp.length;j++){
-                        if(temp.length<2)
+                        if(temp[j].length()<5)
                             continue;
                         if(!freq.containsKey(temp[j])){
                             freq.put(temp[j], 0);
