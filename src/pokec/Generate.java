@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * Created by samjjx on 2017/1/6.
+ * This class is process the pokec and combined the graph
  */
 public class Generate {
     public static void main(String[] args) throws IOException {

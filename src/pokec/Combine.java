@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * Created by samjjx on 2017/1/15.
+ * Combine the graph with frequent key words
  */
 public class Combine {
     public static void main(String[] args) throws IOException {
