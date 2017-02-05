@@ -61,6 +61,17 @@
 10 12 24 32 55 13 40 41 43 5
 9 11 23 31 54 12 39 40 42 4
 
+9   I_am_working_in_field
+11    hobbies
+23  sign_in_zodiac
+31  I_like_movies
+54  movies
+12  I_most_enjoy_good_food
+39  my_active_sports
+40  my_passive_sports
+42  I_like_books
+4   region
+
 ================0================
 Attribute 0 has 1632803 different attributes
 There are 0 attribute entry are more than 10000

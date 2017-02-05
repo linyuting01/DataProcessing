@@ -19,7 +19,7 @@ public class WordCount {
         IOPack ioPack=new IOPack();
         String profilePath="/Users/samjjx/dev/dataset/pokec/soc-pokec-profiles.txt";
         BufferedReader br=ioPack.getBufferInstance(profilePath);
-        BufferedWriter bw=ioPack.getWritter("/Users/samjjx/dev/dataset/pokec/soc-frequent200-size5-keywords");
+        BufferedWriter bw=ioPack.getWritter("/Users/samjjx/dev/dataset/pokec/soc-frequent200-size5-keywords-with-attribute");
 //        String test="fdaga.fd$areq9fdagqrewq776dafafadsqeqw7daf6dad";
 //        String[] testsplit=test.split("\\P{Alpha}+");
         String line="";
@@ -45,10 +45,12 @@ public class WordCount {
                     for(int j=0;j<temp.length;j++){
                         if(temp[j].length()<5)
                             continue;
-                        if(!freq.containsKey(temp[j])){
-                            freq.put(temp[j], 0);
+                        String attrtmp=i+"###"+temp[j];
+//                        String attrtmp=i+"#"+temp[j];
+                        if(!freq.containsKey(attrtmp)){
+                            freq.put(attrtmp, 0);
                         }
-                        freq.put(temp[j],freq.get(temp[j])+1);
+                        freq.put(attrtmp,freq.get(attrtmp)+1);
                     }
                 }
             }
@@ -59,10 +61,15 @@ public class WordCount {
         }
         int threshold=200;
         int count=0;
+        HashSet<String> filter=new HashSet<>();
         Set<String> keyset=freq.keySet();
         for(String key:keyset){
             int fword=freq.get(key);
+            String[] tmp=key.split("###");
             if(fword>threshold){
+                if(filter.contains(tmp[1]))
+                    continue;
+                filter.add(tmp[1]);
                 words.add(key);
                 bw.write(key+"\n");
                 count++;

@@ -17,7 +17,7 @@ public class Combine {
     public static void main(String[] args) throws IOException {
         String profilePath = "/Users/samjjx/dev/dataset/pokec/soc-pokec-profiles.txt";
         String relationPath = "/Users/samjjx/dev/dataset/pokec/soc-pokec-relationships.txt";
-        String keywordPath = "/Users/samjjx/dev/dataset/pokec/soc-frequent200-size5-keywords";
+        String keywordPath = "/Users/samjjx/dev/dataset/pokec/soc-frequent200-size5-keywords-with-attribute";
 
         IOPack ioPack = new IOPack();
         BufferedReader probr = ioPack.getBufferInstance(profilePath);
@@ -49,13 +49,15 @@ public class Combine {
         String line;
         int count = 1632803;
         int labelcount=1;
-        labelsMap.put("People",0);
-        getLabelsMap.put(0,"People");
+        labelsMap.put("People",1000000);
+        getLabelsMap.put(1000000,"People");
         while ((line = kwbr.readLine()) != null) {
-            labelsMap.put(line,labelcount);
-            getLabelsMap.put(labelcount,line);
-            labels.put(line,count);
-            vertices.add(line);
+            String[] data=line.split("###");
+            int label = Integer.parseInt(data[0])*1000000+labelcount;
+            labelsMap.put(data[1],label);
+            getLabelsMap.put(label,data[1]);
+            labels.put(data[1],count);
+            vertices.add(data[1]);
             count++;
             labelcount++;
         }
@@ -100,7 +102,7 @@ public class Combine {
 
         BufferedWriter ew=ioPack.getWritter(ePath);
         for(int i=0;i<src.size();i++){
-            ew.write(src.get(i)+"\t"+dst.get(i)+"\t"+"c"+"\n");
+            ew.write(src.get(i)+"\t"+dst.get(i)+"\t"+"1"+"\n");
         }
         ew.flush();
         ew.close();
